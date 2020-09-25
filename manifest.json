@@ -1,0 +1,27 @@
+{
+  "name": "Google Meets Attendance Names",
+  "version": "1.0",
+  "description": "Reverses the order of names in the participants list in Google Meets!",
+  "permissions": ["activeTab", "declarativeContent", "storage"],
+  "page_action": {
+    "default_icon": {
+      "16": "images/googlemeet16.png",
+      "32": "images/googlemeet32.png",
+      "48": "images/googlemeet48.png",
+      "128": "images/googlemeet128.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://meet.google.com/*"],
+      "js": ["reverseNames.js"]
+    }
+  ],
+  "icons": {
+    "16": "images/googlemeet16.png",
+    "32": "images/googlemeet32.png",
+    "48": "images/googlemeet48.png",
+    "128": "images/googlemeet128.png"
+  },
+  "manifest_version": 2
+}
