@@ -1,6 +1,6 @@
 {
   "name": "Google Meets Attendance Names",
-  "version": "1.0",
+  "version": "1.2",
   "description": "Reverses the order of names in the participants list in Google Meets!",
   "permissions": [],
   "page_action": {

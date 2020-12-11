@@ -16,8 +16,10 @@ const checkForNames = () => {
                                           
       if (nameElement) {
         // cater for participants with more than 1 last name
-        const [fName, lName, ...names] = nameElement.textContent.split(' ');
-        nameElement.textContent = `${lName}${names.length ? ' ' + names.join(' ') : ''}, ${fName}`;
+        if (!nameElement.textContent.includes(',')) {
+          const [fName, lName, ...names] = nameElement.textContent.split(' ');
+          nameElement.textContent = `${lName}${names.length ? ' ' + names.join(' ') : ''}, ${fName}`;
+        } 
       }
     }
   });
