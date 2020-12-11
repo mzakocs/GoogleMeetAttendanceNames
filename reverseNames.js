@@ -1,20 +1,26 @@
 const checkForNames = () => {
-  // Grabs all of the name elements with the class name "cS7aqe NkoVdd"
-  let nameDivs = document.getElementsByClassName("cS7aqe NkoVdd");
-  // Checks the length of the collection
-  if (nameDivs.length > 0) {
-    // Reverses the names
-    alreadyDone = true;
-    for (let i = 0; i < nameDivs.length; i++) {
-      let name = nameDivs[i].innerText;
-      if (!name.includes(',')) {
-        let splitName = name.split(" ");
-        if (splitName.length == 2) {
-          nameDivs[i].innerText = splitName[1] + ", " + splitName[0];
-        } else continue;
+  // get the Meeting details > Participants container node
+  const participantsContainer = document.querySelector('[aria-label="Participants"]');
+  
+  // convert the HTMLCollection to an iterable
+  const participantsElements = Array.from(participantsContainer.children ?? []);
+
+  participantsElements.forEach((participantElement) => {
+    // find the img element as it should be the previousSibling to the name container
+    const [imageElement] = participantElement.getElementsByTagName('img');
+    const nameContainer = imageElement?.nextSibling;
+    
+    if (nameContainer) {
+      // get the actual element that contains the participant's name
+      const [nameElement] = nameContainer.getElementsByTagName('span');
+                                          
+      if (nameElement) {
+        // cater for participants with more than 1 last name
+        const [fName, lName, ...names] = nameElement.textContent.split(' ');
+        nameElement.textContent = `${lName}${names.length ? ' ' + names.join(' ') : ''}, ${fName}`;
       }
     }
-  }
+  });
 };
 
 setInterval(checkForNames, 1500);
