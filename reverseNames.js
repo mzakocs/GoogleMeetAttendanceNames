@@ -24,32 +24,38 @@ const checkForNames = () => {
           nameElement.textContent = `${lName}${names.length ? ' ' + names.join(' ') : ''}, ${fName}`;
           // Sorts the array of students by last name on the final iteration
           if (i == (participantsElements.length - 1)) {
-            participantsElements.sort(function(a, b) {
-              var nameA = a.children[0].children[1].children[0].innerText.split(",")[0].toUpperCase(); // grabs last name from child div
-              var nameB = b.children[0].children[1].children[0].innerText.split(",")[0].toUpperCase(); // grabs last name from child div
-              if (nameA < nameB) {
-                return -1;
-              }
-              if (nameA > nameB) {
-                return 1;
-              }
-              return 0;
-            });
-            // Removes elements to replace them in sorted order
-            // This is really janky but it works 
-            print("Participants Container:");
-            print(participantsContainer);
-            print("Participants Elements (To Array)");
-            print(participantsElements);
-            participantsElements.forEach(function(element) {
-              element.remove();
-              participantsContainer.append(element);
-            });
-            print("Sorted!");
-            print("Participants Container:");
-            print(participantsContainer);
-            print("Participants Elements (To Array)");
-            print(participantsElements);
+            try {
+              participantsElements.sort(function(a, b) {
+                var nameA = a.children[0].children[1].children[0].innerText.split(",")[0].toUpperCase(); // grabs last name from child div
+                var nameB = b.children[0].children[1].children[0].innerText.split(",")[0].toUpperCase(); // grabs last name from child div
+                if (nameA < nameB) {
+                  return -1;
+                }
+                if (nameA > nameB) {
+                  return 1;
+                }
+                return 0;
+              });
+              // Removes elements to replace them in sorted order
+              // This is really janky but it works 
+              console.log("Participants Container:");
+              console.log(participantsContainer);
+              console.log("Participants Elements (To Array):");
+              console.log(participantsElements);
+              participantsElements.forEach(function(element) {
+                element.remove();
+                participantsContainer.append(element);
+              });
+              console.log("Sorted!");
+              console.log("Participants Container:");
+              console.log(participantsContainer);
+              console.log("Participants Elements (To Array):");
+              console.log(participantsElements);
+            }
+            catch(e) {
+              console.log("Participants Sorting Failed! Exiting...")
+              console.log(e)
+            }
           }
         } 
       }
