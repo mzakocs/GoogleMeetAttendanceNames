@@ -23,7 +23,7 @@ const checkForNames = () => {
           const [fName, lName, ...names] = nameElement.textContent.split(' ');
           nameElement.textContent = `${lName}${names.length ? ' ' + names.join(' ') : ''}, ${fName}`;
           // Sorts the array of students by last name on the final iteration
-          if (i == (participantElement.length - 1)) {
+          if (i == (participantsElements.length - 1)) {
             participantsElements.sort(function(a, b) {
               var nameA = a.children[0].children[1].children[0].innerText.split(",")[0].toUpperCase(); // grabs last name from child div
               var nameB = b.children[0].children[1].children[0].innerText.split(",")[0].toUpperCase(); // grabs last name from child div
@@ -35,13 +35,22 @@ const checkForNames = () => {
               }
               return 0;
             });
+            // Removes elements to replace them in sorted order
+            // This is really janky but it works 
+            print("Participants Container:");
+            print(participantsContainer);
+            print("Participants Elements (To Array)");
+            print(participantsElements);
+            participantsElements.forEach(function(element) {
+              element.remove();
+              participantsContainer.append(element);
+            });
+            print("Sorted!");
+            print("Participants Container:");
+            print(participantsContainer);
+            print("Participants Elements (To Array)");
+            print(participantsElements);
           }
-          // Removes elements to replace them in sorted order
-          // This is really janky but it works 
-          participantsElements.forEach(function(element) {
-            element.remove();
-            participantsContainer.append(element);
-          });
         } 
       }
     }
